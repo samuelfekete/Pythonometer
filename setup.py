@@ -1,7 +1,7 @@
 
 from setuptools import setup, find_packages
 
-with open('README.md') as file:
+with open('long_description.rst') as file:
     long_description = file.read()
 
 setup(
@@ -9,6 +9,7 @@ setup(
     version='0.1.0',
     description='A tool for measuring and improving Python skills',
     long_description=long_description,
+    url='https://github.com/samuelfekete/Pythonometer',
     author='Samuel Fekete',
     packages=find_packages(),
     scripts=['native_app.py'],
