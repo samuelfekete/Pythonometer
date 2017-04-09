@@ -144,9 +144,12 @@ class TkApp(object):
         widget.configure(state='disabled')
 
 
-
-if __name__ == "__main__":
+def main():
     root = Tkinter.Tk()
     tk_app = TkApp(root)
     root.mainloop()
     print(tk_app.quiz.get_results())
+
+
+if __name__ == "__main__":
+    main()
