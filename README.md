@@ -10,6 +10,13 @@ covering all areas of Python, so that a Pythonometer score will
 accurately represent how good someone is at python, and that anyone practicing for the
 sake of getting a good score will actually become very good at coding in Python.
 
+## Usage
+It's really easy to install and use:
+```
+pip install pythonometer
+pythonometer
+```
+
 
 ## Status
 This project is currently at prototype stage, with just a small number of questions.
