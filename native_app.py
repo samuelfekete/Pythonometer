@@ -51,7 +51,7 @@ class TkApp(object):
         self.show_results()
 
     def layout_widgets(self):
-        self.master.state('zoomed')
+        self.master.wm_attributes('-zoomed', 1)
         self.master.configure(bg='#151517')
 
         self.master.columnconfigure(0, weight=1)
@@ -72,7 +72,7 @@ class TkApp(object):
         self.question_label.configure(bg='#303032', fg='#aaa')
 
         self.question_box.pack(fill=Tkinter.BOTH, expand=1)
-        self.question_box.configure(bg='#252527', fg='#ccc', font=('Helvetica', 12), state='disabled')
+        self.question_box.configure(bg='#252527', fg='#ccc', font=('Helvetica', 12), state='disabled', highlightthickness=0)
 
         self.button_frame.configure(bg='#252527', bd=0)
         self.button_frame.pack(fill=Tkinter.X)
@@ -81,23 +81,23 @@ class TkApp(object):
         self.feedback_label.configure(bg='#303032', fg='#aaa')
 
         self.feedback_box.pack(fill=Tkinter.BOTH, expand=1)
-        self.feedback_box.configure(bg='#252527', fg='#ccc', font=('Helvetica', 12), state='disabled')
+        self.feedback_box.configure(bg='#252527', fg='#ccc', font=('Helvetica', 12), state='disabled', highlightthickness=0)
 
         self.results_label.pack(fill=Tkinter.X)
         self.results_label.configure(bg='#303032', fg='#aaa')
 
         self.results_box.pack(fill=Tkinter.BOTH, expand=1)
-        self.results_box.configure(bg='#252527', fg='#ccc', font=('Helvetica', 10), state='disabled')
+        self.results_box.configure(bg='#252527', fg='#ccc', font=('Helvetica', 10), state='disabled', highlightthickness=0)
 
         self.next_button.grid(row=0, column=0, padx=10, pady=10, sticky=Tkinter.E + Tkinter.W)
-        self.next_button.configure(bg='#151517', fg='#ccc', relief=Tkinter.FLAT, width=5)
+        self.next_button.configure(bg='#151517', fg='#ccc', relief=Tkinter.FLAT, width=5, highlightthickness=0)
         self.submit_button.grid(row=0, column=1, padx=10, pady=10, sticky=Tkinter.E + Tkinter.W)
-        self.submit_button.configure(bg='#151517', fg='#ccc', relief=Tkinter.FLAT, width=5)
+        self.submit_button.configure(bg='#151517', fg='#ccc', relief=Tkinter.FLAT, width=5, highlightthickness=0)
 
         self.answer_box.bind('<<Paste>>', lambda x: 'break')
         self.answer_box.bind('<<PasteSelection>>', lambda x: 'break')
         self.answer_box.configure(
-            bg='#151517', fg='#ccc', insertbackground='#ccc', bd=0, font=('Courier', 12))
+            bg='#151517', fg='#ccc', insertbackground='#ccc', bd=0, font=('Courier', 12), highlightthickness=0)
         self.answer_box.grid(
             row=0,
             column=1,
