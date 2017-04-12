@@ -51,7 +51,7 @@ class TkApp(object):
         self.show_results()
 
     def layout_widgets(self):
-        self.master.state('zoomed')
+        self.master.wm_attributes('-zoomed', 1)
         self.master.configure(bg='#151517')
 
         self.master.columnconfigure(0, weight=1)
