@@ -19,7 +19,7 @@ class TestQuestions(unittest.TestCase):
 
 # Add a test for every question.
 for question in all_questions():
-    def question_test(self):
+    def question_test(self, question=question):
         current_question = question()
 
         # Assert that a question string is supplied.
