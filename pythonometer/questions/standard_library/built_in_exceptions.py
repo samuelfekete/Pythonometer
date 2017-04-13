@@ -3,8 +3,6 @@
 Docs: https://docs.python.org/3.6/library/exceptions.html
 """
 
-import textwrap
-
 from ..base import Question
 
 
