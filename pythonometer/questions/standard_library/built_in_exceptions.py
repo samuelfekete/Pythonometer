@@ -30,5 +30,8 @@ class CauseAssertionError(Question):
         except:
             return False
 
-    def get_an_answer(self):
-        return 'assert(False)'
+    def get_correct_answers(self):
+        return ['assert(False)']
+
+    def get_wrong_answers(self):
+        return ['raise AssertionError']

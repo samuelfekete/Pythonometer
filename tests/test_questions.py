@@ -26,8 +26,16 @@ for question in all_questions():
         question_string = current_question.get_question_text()
         self.assertIsInstance(question_string, basestring)
 
-        # Assert that checking with the supplied answer returns True.
-        self.assert_(current_question.check_answer(current_question.get_an_answer()))
+        # Assert that at least one correct answer is given.
+        self.assert_(current_question.get_correct_answers())
+
+        # Assert that checking with the correct answers returns True.
+        for correct_answer in current_question.get_correct_answers():
+            self.assert_(current_question.check_answer(correct_answer))
+
+        # Assert that checking with the wrong answers returns False.
+        for wrong_answer in current_question.get_wrong_answers():
+            self.assertFalse(current_question.check_answer(wrong_answer))
 
         # Assert that checking a wrong answer returns False.
         self.assertFalse(current_question.check_answer(''))

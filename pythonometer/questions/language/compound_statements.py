@@ -53,8 +53,8 @@ class CreateFunctionDecorator(Question):
         except:
             return False
 
-    def get_an_answer(self):
-        return textwrap.dedent(
+    def get_correct_answers(self):
+        return [textwrap.dedent(
             """\
             def count_calls(func):
                 def counted_function(*args, **kwargs):
@@ -63,4 +63,18 @@ class CreateFunctionDecorator(Question):
                     return func(*args, **kwargs)
                 return counted_function
             """
-        )
+        )]
+
+    def get_wrong_answers(self):
+        return [
+            textwrap.dedent(
+                """\
+                def count_calls(func):
+                    def counted_function(args):
+                        global num_of_calls
+                        num_of_calls += 1
+                        return func(args)
+                    return counted_function
+                """
+            ),
+        ]

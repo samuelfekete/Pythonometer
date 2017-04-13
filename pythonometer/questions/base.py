@@ -17,6 +17,11 @@ class Question(ABC):
         pass
 
     @abc.abstractmethod
-    def get_an_answer(self):
-        """Get an example answer that is correct."""
+    def get_correct_answers(self):
+        """Get some example answers that are correct."""
+        pass
+
+    @abc.abstractmethod
+    def get_wrong_answers(self):
+        """Get some answers that are wrong."""
         pass
