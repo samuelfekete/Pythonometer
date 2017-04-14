@@ -35,8 +35,11 @@ class AbsoulteValue(Question):
         except:
             return False
 
-    def get_an_answer(self):
-        return 'abs(some_number)'
+    def get_correct_answers(self):
+        return ['abs(some_number)']
+
+    def get_wrong_answers(self):
+        return ['-some_number']
 
 
 class TrueForAll(Question):
@@ -70,6 +73,8 @@ class TrueForAll(Question):
         except:
             return False
 
-    def get_an_answer(self):
-        return 'all(items)'
+    def get_correct_answers(self):
+        return ['all(items)']
 
+    def get_wrong_answers(self):
+        return ['True']

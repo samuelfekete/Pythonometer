@@ -45,7 +45,9 @@ class FindAllSubclasses(Question):
         except:
             pass
 
-    def get_an_answer(self):
+    def get_correct_answers(self):
         """Get an example answer that is correct."""
-        return "subclasses = BaseClass.__subclasses__()"
+        return ["subclasses = BaseClass.__subclasses__()"]
     
+    def get_wrong_answers(self):
+        return ['']

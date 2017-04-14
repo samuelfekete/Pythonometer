@@ -27,9 +27,11 @@ Contributions are very welcome, as it would take a lot of work to fulfill the am
 goal of covering as much of Python as possible. 
 
 It's very easy to contribute questions, just create a class that inherits from Question.
-A question must have three methods: one to get the question text, one to check if an
-answer is correct, and one that returns a valid answer. All questions are automatically tested
-by supplying the question with its own answer.
+A question must have four methods: one to get the question text, one to check if an
+answer is correct, one that returns one or more valid answers, and one that returns
+one or more invalid answers. The latter two methods are used for testing the question,
+to validate that the correct answer will be accepted, and that incomplete answers will
+be rejected.
 
 
 ### Guidelines for adding questions.
