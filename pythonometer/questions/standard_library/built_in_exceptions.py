@@ -1,4 +1,4 @@
-"""Tests for the built-in exceptions.
+"""Questions for the built-in exceptions.
 
 Docs: https://docs.python.org/3.6/library/exceptions.html
 """
