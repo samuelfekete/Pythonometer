@@ -6,7 +6,7 @@ with open('README.rst') as file:
 
 setup(
     name='Pythonometer',
-    version='0.1.2',
+    version='0.2.0',
     description='A tool for measuring and improving Python skills',
     long_description=long_description,
     url='https://github.com/samuelfekete/Pythonometer',
