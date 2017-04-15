@@ -1,11 +1,6 @@
 Pythonometer
 ============
 
-*A tool for measuring and improving Python skills*
-
-What is Pythonometer?
----------------------
-
 Pythonometer is tool for measuring how good someone is at Python.
 
 The goal of this project is to have a comprehensive set of code

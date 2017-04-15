@@ -5,7 +5,7 @@ https://docs.python.org/3.6/library/stdtypes.html
 
 import textwrap
 
-from ..base import Question
+from ..base import Question, WrongAnswer
 
 
 class FindAllSubclasses(Question):
@@ -42,12 +42,14 @@ class FindAllSubclasses(Question):
             exec(answer, {}, answer_locals)
             if answer_locals['subclasses'] == BaseClass.__subclasses__():
                 return True
-        except:
-            pass
+            else:
+                raise WrongAnswer('Answer is incorrect.')
+        except Exception as e:
+            raise WrongAnswer(e)
 
     def get_correct_answers(self):
         """Get an example answer that is correct."""
         return ["subclasses = BaseClass.__subclasses__()"]
-    
+
     def get_wrong_answers(self):
         return ['']

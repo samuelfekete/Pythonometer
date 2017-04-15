@@ -7,6 +7,7 @@ import unittest
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from pythonometer.quiz import all_questions
+from pythonometer.questions.base import WrongAnswer
 
 
 class TestQuestions(unittest.TestCase):
@@ -33,15 +34,18 @@ for question in all_questions():
         for correct_answer in current_question.get_correct_answers():
             self.assert_(current_question.check_answer(correct_answer))
 
-        # Assert that checking with the wrong answers returns False.
+        # Assert that checking with the wrong answers raises WrongAnswer.
         for wrong_answer in current_question.get_wrong_answers():
-            self.assertFalse(current_question.check_answer(wrong_answer))
+            with self.assertRaises(WrongAnswer):
+                current_question.check_answer(wrong_answer)
 
-        # Assert that checking a wrong answer returns False.
-        self.assertFalse(current_question.check_answer(''))
+        # Assert that checking a wrong answer raises WrongAnswer.
+        with self.assertRaises(WrongAnswer):
+            current_question.check_answer('')
 
-        # Assert that checking the answer with bad code returns False.
-        self.assertFalse(current_question.check_answer('raise Exception'))
+        # Assert that checking the answer with bad code raises WrongAnswer.
+        with self.assertRaises(WrongAnswer):
+            current_question.check_answer('raise Exception')
 
     setattr(TestQuestions, 'test_{}'.format(question.__name__), question_test)
 

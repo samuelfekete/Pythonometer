@@ -25,3 +25,8 @@ class Question(ABC):
     def get_wrong_answers(self):
         """Get some answers that are wrong."""
         pass
+
+
+class WrongAnswer(Exception):
+    """A wrong answer has been supplied."""
+    pass

@@ -5,7 +5,7 @@ Docs: https://docs.python.org/3.6/library/functions.html
 
 import textwrap
 
-from ..base import Question
+from ..base import Question, WrongAnswer
 
 
 class AbsoulteValue(Question):
@@ -28,12 +28,15 @@ class AbsoulteValue(Question):
     def check_answer(self, answer):
         test_numbers = [0, 1, -1, 0.0, 0.1, -0.1]
         try:
-            return all(
+            if all(
                 abs(some_number) == eval(answer, {}, {'some_number': some_number})
                 for some_number in test_numbers
-            )
-        except:
-            return False
+            ):
+                return True
+            else:
+                raise WrongAnswer('Answer is not correct for all cases.')
+        except Exception as e:
+            raise WrongAnswer(e)
 
     def get_correct_answers(self):
         return ['abs(some_number)']
@@ -66,12 +69,15 @@ class TrueForAll(Question):
             [True, True, False],
         ]
         try:
-            return all(
+            if all(
                 all(case) == eval(answer, {}, {'items': case})
                 for case in test_cases
-            )
-        except:
-            return False
+            ):
+                return True
+            else:
+                raise WrongAnswer('Answer is not correct for all cases.')
+        except Exception as e:
+            raise WrongAnswer(e)
 
     def get_correct_answers(self):
         return ['all(items)']
