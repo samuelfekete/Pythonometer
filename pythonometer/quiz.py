@@ -4,7 +4,7 @@ import random
 
 from itertools import groupby
 
-from .questions.base import Question
+from .questions.base import Question, WrongAnswer
 from .questions import *
 
 
@@ -50,12 +50,20 @@ class Quiz(object):
         return self.current_question
 
     def supply_answer(self, question, answer):
-        """Check the answer and move on to the next question if it's correct."""
-        correct_answer = question.check_answer(answer)
-        self.questions_asked.append((self.current_question, answer, correct_answer))
-        if correct_answer:
+        """Check the answer and move on to the next question if it's correct.
+
+        Raises a WrongAnswer exception if the answer is incorrect.
+        """
+        correct_answer = False
+        try:
+            correct_answer = question.check_answer(answer)
             self.next()
-        return correct_answer
+            return correct_answer
+        finally:
+            self.questions_asked.append(
+                (self.current_question, answer, correct_answer)
+            )
+
 
     def last_answer_was_correct(self):
         """Check if the last answer was correct."""

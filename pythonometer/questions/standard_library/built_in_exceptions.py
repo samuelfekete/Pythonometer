@@ -3,7 +3,7 @@
 Docs: https://docs.python.org/3.6/library/exceptions.html
 """
 
-from ..base import Question
+from ..base import Question, WrongAnswer
 
 
 class CauseExceptionMixin(object):
@@ -26,13 +26,14 @@ class CauseExceptionMixin(object):
         for illegal_word in ['raise', 'exec']:
             # `exec` is banned because it can be used to construct `raise`.
             if illegal_word in answer:
-                return False
+                raise WrongAnswer('Illegal word used.')
         try:
             exec(answer, {}, {})
         except self.exception:
             return True
-        except:
-            return False
+        except Exception as e:
+            raise WrongAnswer('Wrong exception was raised: %s' % e)
+        raise WrongAnswer('No exceptions were raised.')
 
     def get_wrong_answers(self):
         return ['raise {}'.format(self.exception.__name__)]

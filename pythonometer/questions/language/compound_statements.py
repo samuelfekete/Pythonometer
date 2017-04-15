@@ -6,7 +6,7 @@ https://docs.python.org/3.6/reference/compound_stmts.html
 import random
 import textwrap
 
-from ..base import Question
+from ..base import Question, WrongAnswer
 
 
 class CreateFunctionDecorator(Question):
@@ -38,20 +38,21 @@ class CreateFunctionDecorator(Question):
             count_before_call = global_variables['num_of_calls']
             # Check that the count does not increment on function definition.
             if count_before_call != count_before_definition:
-                return False
+                raise WrongAnswer('Count increments before function is called.')
             input_value = random.randrange(10000)
             returned_value = test_function(input_value, kwarg=input_value)
             # Check that the function returns the correct value.
             if returned_value != input_value * 2:
-                return False
+                raise WrongAnswer('Function does not return correct value.')
             count_after_call = global_variables['num_of_calls']
             # Check that 1 was added to count.
             if count_after_call - count_before_call != 1:
-                return False
+                raise WrongAnswer('Count not incremented by 1.')
             else:
                 return True
-        except:
-            return False
+        except Exception as e:
+            # Catch anything else that was wrong.
+            raise WrongAnswer(e)
 
     def get_correct_answers(self):
         return [textwrap.dedent(

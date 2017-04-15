@@ -2,6 +2,7 @@ import Tkinter
 from ttk import Style
 
 from pythonometer.quiz import Quiz
+from pythonometer.questions.base import WrongAnswer
 
 
 class TkApp(object):
@@ -109,14 +110,20 @@ class TkApp(object):
 
     def handle_response(self):
         answer = self.answer_box.get('1.0', Tkinter.END)
-        if self.quiz.supply_answer(self.quiz.current_question, answer):
+        try:
+            self.quiz.supply_answer(self.quiz.current_question, answer)
             self.answer_box.delete('1.0', Tkinter.END)
+            self.show_feedback(True)
             self.show_question()
-        self.show_feedback()
+        except WrongAnswer as e:
+            self.show_feedback(False, e)
         self.show_results()
 
     def skip_question(self):
-        self.quiz.supply_answer(self.quiz.current_question, '')
+        try:
+            self.quiz.supply_answer(self.quiz.current_question, '')
+        except WrongAnswer:
+            pass
         self.answer_box.delete('1.0', Tkinter.END)
         self.quiz.next()
         self.show_question()
@@ -125,13 +132,15 @@ class TkApp(object):
     def show_question(self):
         self.change_text(self.question_box, self.quiz.current_question.get_question_text())
 
-    def show_feedback(self):
-        if self.quiz.last_answer_was_correct():
+    def show_feedback(self, positive, message=''):
+        if positive:
             self.change_text(self.feedback_box, "You're answer was correct!")
         else:
             self.change_text(
                 self.feedback_box,
-                "You're answer is incorrect. Please try again or skip the question."
+                "You're answer is incorrect. "
+                "Please try again or skip the question.\n\n"
+                '{}'.format(message)
             )
 
     def show_results(self):
