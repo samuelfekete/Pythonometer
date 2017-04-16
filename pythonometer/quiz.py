@@ -57,13 +57,12 @@ class Quiz(object):
         correct_answer = False
         try:
             correct_answer = question.check_answer(answer)
-            self.next()
-            return correct_answer
         finally:
             self.questions_asked.append(
                 (self.current_question, answer, correct_answer)
             )
-
+        self.next()
+        return correct_answer
 
     def last_answer_was_correct(self):
         """Check if the last answer was correct."""
