@@ -36,7 +36,21 @@ class CauseExceptionMixin(object):
         raise WrongAnswer('No exceptions were raised.')
 
     def get_wrong_answers(self):
-        return ['raise {}'.format(self.exception.__name__)]
+        """Get wrong answers for all possible exceptions."""
+        # We need an example of a wrong exception, since it's possible to
+        # have questions about any exception, we need to ensure that we
+        # have the wrong one.
+        if isinstance(self.exception, SyntaxError):
+            # Use AttributeError as the wrong exception.
+            wrong_exception = '"".a'
+        else:
+            # Use SyntaxError as the wrong exception.
+            wrong_exception = '-'
+        return [
+            'raise {}'.format(self.exception.__name__),  # Use of `raise`.
+            'pass',  # No exceptions raised.
+            wrong_exception,  # Wrong exception raised.
+        ]
 
 
 class CauseAssertionError(CauseExceptionMixin, Question):
